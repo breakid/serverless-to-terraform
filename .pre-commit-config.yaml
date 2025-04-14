@@ -1,0 +1,99 @@
+# USAGE NOTES
+#
+# To setup, run:
+#
+#   pre-commit install
+#
+# then do your normal `git add` and `git commit` or run:
+#
+#   pre-commit run --all-files
+#
+# If you edit this file, you must re-run `pre-commit install`
+#
+# Reference: https://github.com/pre-commit/pre-commit-hooks
+# Source: https://github.com/apwheele/retenmod/blob/main/.pre-commit-config.yaml
+
+exclude: '.git|.tox|docs'
+#fail_fast: true
+default_language_version:
+  python: python3
+
+ci:
+  autofix_commit_msg: |
+    fix: Auto fix by pre-commit [pre-commit.ci]
+
+    For more information, see https://pre-commit.ci
+  autoupdate_commit_msg: 'fix: Pre-commit autoupdate [pre-commit.ci]'
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      # Prevent giant files from being committed
+      - id: check-added-large-files
+
+      # Check whether files parse as valid python
+      - id: check-ast
+
+      # Check for files with names that would conflict on a case-insensitive filesystem
+      - id: check-case-conflict
+
+      # Checks for a common error of placing code before the docstring
+      - id: check-docstring-first
+
+      # Checks that non-binary executables have a proper shebang.
+      - id: check-executables-have-shebangs
+
+      # Attempts to load all json files to verify syntax
+      # Note: Exclude VSCode configs because the hook can't handle JSON files with comments
+      - id: check-json
+        exclude: '.vscode'
+
+      # Check for files that contain merge conflict strings
+      - id: check-merge-conflict
+
+      # Checks for symlinks which do not point to anything
+      - id: check-symlinks
+
+      # Attempts to load all TOML files to verify syntax
+      - id: check-toml
+
+      # Ensures that links to version control system (VCS) websites are permalinks
+      - id: check-vcs-permalinks
+
+      # Attempts to load all xml files to verify syntax
+      - id: check-xml
+
+      # Attempts to load all yaml files to verify syntax
+      - id: check-yaml
+
+      # Check for debugger imports and py37+ breakpoint() calls in python source
+      - id: debug-statements
+
+      # Detects symlinks which are changed to regular files with a content of a path which that symlink was pointing to
+      - id: destroyed-symlinks
+
+      # Makes sure files end in a newline and only a newline
+      - id: end-of-file-fixer
+
+      # Verifies that test files are named correctly
+      - id: name-tests-test
+        args: [--pytest-test-first]
+
+      # Ensure JSON is pretty printed
+      # Note: Exclude VSCode configs because the hook can't handle JSON files with comments
+      - id: pretty-format-json
+        args: [--autofix, --no-ensure-ascii]
+        exclude: '.vscode'
+
+      # Trims trailing whitespace
+      - id: trailing-whitespace
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.4
+    hooks:
+      # Run the linter
+      - id: ruff
+        args: [--fix]
+      # Run the formatter
+      - id: ruff-format

@@ -1,0 +1,34 @@
+stages:
+  - deploy
+
+variables:
+  UV_CACHE_DIR: /tmp/uv-cache
+
+default:
+  image: hashicorp/terraform:1.11
+
+cache:
+  paths:
+    - ${UV_CACHE_DIR}
+
+deploy:
+  stage: deploy
+  parallel:
+    matrix:
+      - PROJECT:
+          - goodbye
+          - hello
+  before_script:
+    - apk add --no-cache python3 py3-pip
+    - python3 --version
+    - terraform version
+    - pip install --break-system-packages uv
+    - uv sync --cache-dir ${UV_CACHE_DIR}
+    - cd src
+    - echo "Generating Terraform files"
+    - python3 -m serverless ../serverless.yml
+  script:
+    - cd ${CI_PROJECT_DIR}/functions/${PROJECT}
+    - echo "🚀 Deploying '${PROJECT}' project to AWS"
+    - terraform init -input=false
+    - terraform apply -auto-approve

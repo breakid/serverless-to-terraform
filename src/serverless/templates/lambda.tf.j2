@@ -1,0 +1,46 @@
+# ============================================================================ #
+#                                 Lambda Layers                                #
+# ============================================================================ #
+
+{% for layer_name, layer_archive in layers.items() %}
+resource "aws_lambda_layer_version" "{{ layer_name }}" {
+  compatible_runtimes = ["{{ runtime }}"]
+  filename            = "{{ layer_archive }}"
+  layer_name          = "{{ layer_name }}_dependencies"
+}
+{% endfor %}
+
+# ============================================================================ #
+#                                Lambda Function                               #
+# ============================================================================ #
+
+data "archive_file" "lambda" {
+  output_path = "lambda_function_payload.zip"
+  source_file = "handler.py"
+  type        = "zip"
+}
+
+resource "aws_lambda_function" "{{ function_name }}" {
+  filename         = data.archive_file.lambda.output_path
+  function_name    = "{{ function_name }}"
+  handler          = "{{ handler }}"
+  memory_size      = {{ memorySize }}
+  role             = var.lambda_role_arn
+  runtime          = "{{ runtime }}"
+  source_code_hash = filebase64sha256(data.archive_file.lambda.output_path)
+  timeout          = {{ timeout }}
+
+  layers = [
+    {% for layer_name in layers %}
+        aws_lambda_layer_version.{{ layer_name }}.arn,
+    {% endfor %}
+  ]
+
+  environment {
+    variables = {
+        {% for name, value in environment.items() %}
+            {{ name }} = "{{ value }}"
+        {% endfor %}
+    }
+  }
+}

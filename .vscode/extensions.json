@@ -1,0 +1,85 @@
+{
+    "recommendations": [
+        "aaron-bond.better-comments",
+        "charliermarsh.ruff",
+        "codezombiech.gitignore",
+        "docker.docker",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "jeff-hykin.better-dockerfile-syntax",
+        "mechatroner.rainbow-csv",
+        "ms-azuretools.vscode-docker",
+        "ms-python.black-formatter",
+        "ms-python.debugpy",
+        "ms-python.isort",
+        "ms-python.mypy-type-checker",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-vscode-remote.remote-containers",
+        "ms-vscode-remote.remote-ssh-edit",
+        "ms-vscode-remote.remote-ssh",
+        "ms-vscode-remote.remote-wsl",
+        "ms-vscode-remote.vscode-remote-extensionpack",
+        "ms-vscode.makefile-tools",
+        "ms-vscode.remote-explorer",
+        "ms-vscode.remote-server",
+        "njpwerner.autodocstring",
+        "oderwat.indent-rainbow",
+        "pascalreitermann93.vscode-yaml-sort",
+        "redhat.vscode-yaml",
+        "richie5um2.vscode-sort-json",
+        "samuelcolvin.jinjahtml",
+        "stackbreak.comment-divider",
+        "streetsidesoftware.code-spell-checker",
+        "tamasfe.even-better-toml",
+        "usernamehw.errorlens",
+        //
+        // Markdown Tools
+        "davidanson.vscode-markdownlint",
+        "foam.foam-vscode",
+        // "shd101wyy.markdown-preview-enhanced",
+        "takumii.markdowntable",
+        "yzhang.markdown-all-in-one",
+        //
+        // API Dev
+        // "rangav.vscode-thunder-client",
+        //
+        // AWS Tools
+        // "amazonwebservices.aws-toolkit-vscode",
+        //
+        // C#
+        // "ms-dotnettools.csharp",
+        // "ms-dotnettools.vscode-dotnet-runtime",
+        //
+        // Infrastructure-as-Code
+        // "hashicorp.terraform",
+        // "redhat.ansible",
+        //
+        // Kubernetes
+        // "ms-kubernetes-tools.vscode-kubernetes-tools",
+        //
+        // Languages
+        // "darkoperator.aggressorscript",
+        // "dotjoshjohnson.xml",
+        //
+        // Linting / Formatting
+        // "dbaeumer.vscode-eslint",
+        // "esbenp.prettier-vscode",
+        //
+        // MongoDB
+        // "mongodb.mongodb-vscode",
+        //
+        // SQL Tools
+        // "cweijan.vscode-mysql-client2",
+        // "inferrinizzard.prettier-sql-vscode",
+        // "jakebathman.mysql-syntax",
+        // "mtxr.sqltools",
+        //
+        // Support Tools
+        // "gitlab.gitlab-workflow",
+        //
+        // Utilities
+        // "ms-vscode.hexeditor",
+        // "zainchen.json"
+    ]
+}

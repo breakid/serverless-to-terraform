@@ -1,0 +1,31 @@
+service: eventful-app
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1
+
+functions:
+  hello:
+    handler: handler.handler
+    memorySize: 256
+    timeout: 10
+    environment:
+      STAGE: dev
+      DEBUG: true
+    events:
+      - http:
+          path: hello
+          method: get
+      - sqs: myQueue
+      - eventBridge:
+          pattern:
+            source:
+              - 'my.custom.source'
+
+  goodbye:
+    handler: handler.handler
+    events:
+      - http:
+          path: bye
+          method: post

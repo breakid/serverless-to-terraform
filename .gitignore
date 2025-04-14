@@ -172,3 +172,11 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Custom
+
+.vscode/launch.json
+*.pyc
+*.tfstate
+**.zip
+functions/**/*.tf
